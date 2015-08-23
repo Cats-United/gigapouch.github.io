@@ -1,0 +1,69 @@
+<html><body>
+<h1>How to easily make a PC boot into either Windows or Linux</h1>
+<p>Written by gigapouch, May 30, 2015</p>
+<p><i>Getting tired of Windows? Want some variety? Want to try out Linux but don't know where to start? Well, this tutorial is for you.</i></p>
+
+<div align="center"><a href="http://www.simplehitcounter.com" target="_blank"><img src="http://simplehitcounter.com/hit.php?uid=1934049&f=16777215&b=0" border="0" height="18" width="83" alt="web counter"></a><br><a href="http://www.simplehitcounter.com" target="_blank" style="text-decoration:none;">Total views</a></div>
+<img src = "uwin.bmp"></img>
+<u><h2>Step 1: What you need</h2></u>
+<ul>
+<li>A computer running Windows with preferably 1 GB of RAM at least and a 100 GB hard drive (preferably)</li>
+<li>Stable internet access</li>
+<li>A 2 GB or larger USB drive <b>that doesn't have any data you want to keep</b></li>
+<li>About an hour of free time (more or less depending on how experienced you are and how fast your download speed is)</li>
+<li>Absolutely Required: Administrative privledges to install software and manage partitions</li>
+</ul>
+<u><h2>Step 2: Setting up partitions</h2></u>
+<p>Go to the Start Menu, search "partition" and click "Create and format hard disk partitions".
+<img src = "diskmgmt.png"></img>
+<p>Select the larger partition, not the 100 MB partition. Right click it, and then select "Shrink Partition..." Wait a while (be patient, you set aside time to do this, right?), and then the following window should come up:
+<img src = "shrinkc.png"></img>
+<p>Do not mess with the selected value or your copy of Windows can get corrupt (I had that happen to me once). This is because some immovable files reside away from the huge clump of other files, and these can be critical system files. As long as that value is at least 15000 or so, you'll still have plenty of space for Ubuntu plus the apps you'll want to install. I would say the bare minimum for this value would be 6000. Now click "Shrink". Again, if you be patient, the operation should complete.</p>
+<u><h2>Step 3: Installing partition manager software and adding partitions</h2></u>
+<p>The operation completed, and now you see a rectangle that says "Unallocated". That means there is no partition there, so the computer can't do anything with it. But, you cannot use the built-in partition manager in Windows to make partitions that Linux (in this case Ubuntu) can use. So we must install a piece of software called <a href = "http://www.partitionwizard.com/download.html">MiniTool Partition Wizard.</a> Download the Free Edition, and then follow the instructions to install it. Then, when you run it, click on "Launch Application", then you'll see this:
+<img src = "mtpw.png"</img>
+<p>If you did the previous steps correctly, there should be some unallocated space, towards the bottom. Select that unallocated space, right click it and then left click "Create".</p>
+<img src = "createpart.png"></img>
+You can change the partition label to whatever you want, but you must use the following settings: "Create as: Logical", "File System: Ext4". Then click the down arrow next to the "Partition size" box until the value in the "Unallocated space after" box is at least how much RAM you have (in MB). By the way, the Ext4 file system is one that Ubuntu can use.
+<p>Click OK, then Apply in the top left corner. Click yes.</p>
+<p>Lastly, create a partition in the remaining unallocated space with the Linux swap filesystem and click apply and yes.</p>
+<u><h2>Step 4: Downloading Ubuntu and writing it to your USB drive</h2></u>
+<p>Don't worry, after you install Ubuntu, you don't need your USB drive to use Ubuntu.</p>
+<p>Download it here: http://www.ubuntu.com/download/desktop</p>
+<img src = "ubuntuuu.PNG"></img>
+<p>Download the 64-bit version of 14.04 if you have more than 2 GB of RAM, or 32-bit if you have 2 GB or less of RAM.</p>
+<p>While you're waiting, download <a href="https://rufus.akeo.ie/">Rufus Portable</a> so you can write the Ubuntu image to your USB stick once Ubuntu has finished downloading. Now go take a break, get a coffee, eat dinner, whatever while you're waiting.</p>
+<u><h2>Step 5: Writing the Ubuntu image to a USB drive</h2></u>
+<p>Plug in your USB drive, then launch Rufus.</p>
+<img src = "rufus.png"></img>
+<p>Leave all the settings alone, except for the "Create a bootable disk using". Change this to "ISO image", click the icon next to it, and select your downloaded Ubuntu image file. Click Start, then OK.</p>
+<p>Once this has finished, unplug your USB drive and reboot the computer. As soon as the Shutting Down screen disappears, repeatedly press the <a href ="http://pcsupport.about.com/od/fixtheproblem/a/biosaccess_pc.htm">BIOS access key</a>. (My computer is self-built, and the motherboard I used for it requires you to use the Del key.) Once you're in the BIOS, you need to change the boot order so that "USB", "USB Drive", "USB Removable Media" or similar is at the top or first. Usually you can find this setting under "Boot order", "Boot management", or "Advanced Boot settings", or similar. You have to navigate using the arrow keys, not the mouse. This makes the computer check to see if there are any bootable USB devices before checking for a bootable hard drive or CD.</p>
+<p>Before rebooting your computer once more, plug in your USB drive and then reboot.</p>
+<u><h2>Step 6: Installing Ubuntu</h2></u>
+<img src = "ubuntu1.PNG"></img>
+<p>Congratulations on making it this far! Now it's time to install Ubuntu. Click on "Install Ubuntu", then check only the bottom checkbox (we'll install updates later). Now, just to be safe, we'll click on "Something else".</p>
+<img src = "ubuntu2.PNG"></img>
+<p>Now you should be at the partitions screen.</p>
+<img src = "ubuntu3.JPG"></img>
+<p>Select the partition that is of type ext4 and click "Change" in the corner. You should use the settings shown in the picture, but your number value will be different.</p>
+<img src = "ubuntu4.JPG"></img>
+<p>Now select the partition that is of type "swap". Click "Change" and use the following settings:</p>
+<img src = "ubuntu5.JPG"></img>
+<p>Change the "Device for boot loader installation" setting to the /dev/sda that is the ext4 partition. (NOTE: It might not be /dev/sda5.) Then click Install Now.</p>
+<img src = "ubuntu6.JPG"></img>
+<p>Now you will be asked for your timezone, keyboard layout, and other options. You may get an error screen right after you select a username and password, just retry and it should work.</p>
+<img src = "ubuntu7.JPG"></img>
+<img src = "ubuntu8.JPG"></img>
+<img src = "ubuntu9.JPG"></img>
+<p>Now when it's finished, click "Restart" and unplug the USB drive.</p>
+<u><h2>Step 7: Adding Ubuntu as an option to boot</h2></u>
+<p>We're not done yet! We need to add Ubuntu as an option so we can choose to boot into Windows or Ubuntu. To do this, we need to install just one more piece of software: <a href = "http://cf.cdn.neosmart.net/software/EasyBCD/community/EasyBCD%202.2.exe?response-content-disposition=attachment%3B%20filename%3D%22EasyBCD%202.2.exe%22&response-cache-control=max-age%3D1209600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLmNkbi5uZW9zbWFydC5uZXQvc29mdHdhcmUvRWFzeUJDRC9jb21tdW5pdHkvRWFzeUJDRCUyMDIuMi5leGU~cmVzcG9uc2UtY29udGVudC1kaXNwb3NpdGlvbj1hdHRhY2htZW50JTNCJTIwZmlsZW5hbWUlM0QlMjJFYXN5QkNEJTIwMi4yLmV4ZSUyMiZyZXNwb25zZS1jYWNoZS1jb250cm9sPW1heC1hZ2UlM0QxMjA5NjAwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNDMzMDQzNzE0fX19XX0_&Signature=N0qb4BYcMDdujtUydarOzQ1x5V3i5zmaL60xj01zcxop7znElOKiZRHGeDlFjsSlXrwi8NezK8t2h11zpJegB2-SDYc9dtONPfIotmX0tYuA4f0swGAgdI9SGait51W54UsHbo7I0~VW~bcT~sdbFsR2sS7w85f8tgYAOYSkCgGZNfK5eOSqHgBOa2QVVo7IPXjPShwwCEs099PacCDMAorzbDWpa~QAPEUGafnx-c5riCRJSEx2Dwuyo-JjrUUTg4CacKkayqYGT08pgCfspzut8ggScavGOeP6LvHmfgIokBrftBR0rmIz42g2O7Iloq9PKZlRo~9swkNpY9sl3w__&Key-Pair-Id=APKAIPY5GEV5EHVOFFNQ">EasyBCD.</a> This adds a menu to bootup that lets you choose the OS to boot to. Download it and follow the instructions.</p>
+<img src = "easybcd.png"></img>
+<p>Click on "Add new entry", then use the settings below: Remember, choose the partition that says "Linux", it may not be Partition 3 like in the picture.</p>
+<img src = "easybcd2.png"></img>
+<p>Click on "Add entry", then "Edit Boot Menu". Click on the circle that says "Wait for user selection", then "Save settings".</p>
+<img src = "easybcd3.png"></img>
+<p>Reboot your PC, without any USB drives or CDs in, and you should get the boot menu. Select "Ubuntu", obviously. Then login with the password you set earlier.</p>
+<p>Congratulations! You've converted your PC to a double-OS machine!</p>
+<u></h2>Last step: updating</h2></u>
+<p>Now all you need to learn how to do is update Ubuntu. Just connect to your home network, then go to the Ubuntu "start menu", which is located in the top left corner as a button, then search "terminal". Click on it, then type in "sudo apt-get update", without the quotes. And that's all there is to it! Now you can go ahead and install your favorite apps and tweak the settings to your liking!</p>
