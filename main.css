@@ -8,16 +8,24 @@ h1, h2, h3  {
 nav {
   background-color: green;
 }
-li  {
+  li{display:inline-block;}
+nav li a  {
   list-style: none;
   display: inline-block;
   text-decoration: none;
   color: orange;
 }
 #subaru {
-  width: 300px;
+  width: 600px;
   border: 2px solid #FFF;
+  background-image: url("subaru.jpg");
+  margin: auto;
+  padding: 1px;
 }
 img not #subaru {
   margin: auto;
 }
+  nav li {
+  text-align: center;
+  }
+  
